@@ -17,11 +17,11 @@ def forwardPropagation(weights, biases, input, num_total_layers, activation_func
         
         pre_activations[layer] = temp_bias[layer] + Utilities.multiply(weights[layer], activations[layer - 1])
 
-        if(activation_function == "sigmoid"):
+        if activation_function == "sigmoid":
             activations[layer] = ActivationAndOutputFunctions.sigmoid(pre_activations[layer])
-        elif(activation_function == "tanh"):
+        elif activation_function == "tanh":
             activations[layer] = ActivationAndOutputFunctions.tanh(pre_activations[layer])
-        elif(activation_function == "relu"):
+        elif activation_function == "relu":
             activations[layer] = ActivationAndOutputFunctions.relu(pre_activations[layer])
         else:
             activations[layer] = ActivationAndOutputFunctions.identity(pre_activations[layer])
@@ -51,11 +51,11 @@ def forwardPropagationForPredictions(weights, biases, input, num_total_layers, a
     for layer in range(1, num_total_layers - 1):
         pre_activations[layer] = biases[layer] + np.dot(weights[layer], activations[layer - 1])
 
-        if(activation_function == "sigmoid"):
+        if activation_function == "sigmoid":
             activations[layer] = ActivationAndOutputFunctions.sigmoid(pre_activations[layer])
-        elif(activation_function == "tanh"):
+        elif activation_function == "tanh":
             activations[layer] = ActivationAndOutputFunctions.tanh(pre_activations[layer])
-        elif(activation_function == "relu"):
+        elif activation_function == "relu":
             activations[layer] = ActivationAndOutputFunctions.relu(pre_activations[layer])
         else:
             activations[layer] = ActivationAndOutputFunctions.identity(pre_activations[layer])
