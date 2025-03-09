@@ -75,3 +75,8 @@ def multiply(matrix1, matrix2):
 '''multiply two matrices'''
 def matrixMultiply(matrix1, matrix2):
     return np.multiply(matrix1, matrix2)
+
+'''checks if the passed obejct is None or not'''
+def checkIfNone(passedObject):
+    isNone = not(passedObject is None)
+    return isNone

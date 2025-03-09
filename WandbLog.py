@@ -8,3 +8,8 @@ def printAndLogAccuracyAndLoss(epoch, trainingAccuracy, trainingLoss, validation
     print("Training Loss = {}".format(trainingLoss))
     print("Validation Loss = {}".format(validationLoss))
     wandb.log({"training_accuracy" : trainingAccuracy, "validation_accuracy" : validationAccuracy, "training_loss" : trainingLoss, "validation_loss" : validationLoss, "epoch" : (epoch + 1)})
+
+
+def printAccuracyForMnistTest(trainingAccuracy, validationAccuracy):
+    print("\nTraining Accuracy for Mnist dataset is : ", trainingAccuracy)
+    print("Validation Accuracy for Mnist dataset is : ", validationAccuracy)
