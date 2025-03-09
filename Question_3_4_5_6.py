@@ -35,7 +35,7 @@ def runSweep():
 '''sweep configuration'''
 configuration_values = {
     'method': 'bayes',
-    'name': 'Accuracy and Loss',
+    'name': 'Accuracy and Loss New',
     'metric': {
         'goal': 'maximize',
         'name': 'validation_accuracy'
@@ -43,7 +43,7 @@ configuration_values = {
     'parameters': {
         'initialization_method': {'values': ['random', 'xavier_nor', 'xavier_uni', 'he_nor', 'he_uni']},
         'number_of_hidden_layers' : {'values' : [3, 4, 5]},
-        'neurons_in_each_hidden_layers' : {'values' : [32, 64, 128, 256]},
+        'neurons_in_each_hidden_layers' : {'values' : [32, 64, 128]},
 
         'learning_rate': {'values':[1e-1, 1e-2, 1e-3, 5e-3, 1e-4]},
         'beta_value' : {'values' : [0.9, 0.999]},
@@ -61,5 +61,5 @@ configuration_values = {
 sweep_agent_id = wandb.sweep(sweep = configuration_values, project = "Debasmita-DA6410-Assignment-1")
 
 '''generate a sweep agent to run the sweep'''
-wandb.agent(sweep_agent_id, function = runSweep, count = 150)
+wandb.agent(sweep_agent_id, function = runSweep, count = 300)
 wandb.finish()
