@@ -2,7 +2,7 @@ import numpy as np
 
 '''
     The given images are 2D (28 x 28)
-    But the input to e neural network has to be a 1D array
+    But the input to the neural network has to be a 1D array
     So this function flattens the 2D images into a 1D array
     Also this function normalizes each pixel of the image (because the input of each pixel is in the range 0-256)
     This noramlization is needed to handle avoid exploding of the gradients

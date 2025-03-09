@@ -20,10 +20,10 @@ def calculateTrainingAccuracyandLoss(x_train, y_train, weights, bias, num_total_
     return training_accuracy, training_loss
 
 def calculateValidationAccuracyandLoss(x_validation, y_validation, weights, bias, num_total_layers, activation_function, loss_function):
-    predictions=list()
+    predictions = list()
     data_size = x_validation.shape[0]
-    for i in range(x_validation.shape[0]):
-        _, _, predictedValues = forwardPropagationForPredictions(weights, bias, x_validation[i], num_total_layers, activation_function)
+    for point in range(data_size):
+        _, _, predictedValues = forwardPropagationForPredictions(weights, bias, x_validation[point], num_total_layers, activation_function)
         predictions.append(predictedValues)
     validation_accuracy = trainingAccuracy(y_validation, np.array(predictions))
 
@@ -35,3 +35,18 @@ def calculateValidationAccuracyandLoss(x_validation, y_validation, weights, bias
     
     return validation_accuracy, validation_loss
 
+def calculateTestAccuracyandLoss(x_test, y_test, weights, bias, num_total_layers, activation_function, loss_function):
+    predictions=list()
+    data_size = x_test.shape[0]
+    for point in range(data_size):
+        _, _, predictedValues = forwardPropagationForPredictions(weights, bias, x_test[point], num_total_layers, activation_function)
+        predictions.append(predictedValues)
+    test_accuracy = trainingAccuracy(y_test, np.array(predictions))
+
+    test_loss = 0.0
+    if(loss_function == "cross_entropy"):
+        test_loss = crossEntropyLoss(y_test, np.array(predictions)) / y_test.shape[0]
+    else:
+        test_loss = meanSquaredLoss(y_test, np.array(predictions))
+    
+    return test_accuracy, test_loss
