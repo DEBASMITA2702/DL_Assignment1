@@ -4,7 +4,16 @@ import argparse
 warnings.filterwarnings("ignore")
 
 def collectArguments():
-    argument_passed = argparse.ArgumentParser(description = 'Arguments for models hyperparameters')
+    '''
+    Parameters:
+        none
+    Returns:
+        an object conataining all the values that are passed as part of command line argument
+    Function:
+        collects all the arguemnts passed as part of the command line
+    '''
+
+    argument_passed = argparse.ArgumentParser(description = 'Arguments for model hyperparameters')
     argument_passed.add_argument('-wp','--wandb_project', help = "Project name used to track experiments in Weights & Biases dashboard")
     argument_passed.add_argument('-we','--wandb_entity', help = "Wandb Entity used to track experiments in the Weights & Biases dashboard")
     argument_passed.add_argument('-d','--dataset', help = "Dataset to work on \n choices: ['mnist', 'fashion_mnist']")
