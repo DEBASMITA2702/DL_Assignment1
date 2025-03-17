@@ -1,8 +1,16 @@
 from Utilities import checkIfNone
 
 def setValuesFromArgument(argument_passed):
+    '''
+    Parameters:
+        argument_passed : arguments that are passed as part of command line
+    Returns:
+        hyperparam_dictionary : a dictionary with all the hyperparameter values set
+    Function:
+        extracts and sets the values of the hyperparameters (needed for running train.py)
+    '''
 
-    '''default values of each of the hyperparameter according to the config of my best model obtained from sweeping'''
+    # default values of each of the hyperparameter according to the config of my best model obtained from sweeping
     set_project_name = "Debasmita-DA6410-Assignment-1"
     set_entity_name = "cs24m015-indian-institute-of-technology-madras"
     set_learning_rate = 0.005
@@ -24,7 +32,7 @@ def setValuesFromArgument(argument_passed):
     set_confusion_matrix = 0
     set_test = 0
 
-    '''set the values based on the arguments passed'''
+    # set the values if they are passed as arguments on command line
     if checkIfNone(argument_passed.wandb_project):
         set_project_name = argument_passed.wandb_project
     if checkIfNone(argument_passed.wandb_entity):
@@ -66,6 +74,7 @@ def setValuesFromArgument(argument_passed):
     if checkIfNone(argument_passed.test):
         set_test = argument_passed.test
 
+    # create and set the hyperparameter dictionary
     hyperparam_dictionary = dict()
     
     hyperparam_dictionary["project_name"] = set_project_name

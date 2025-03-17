@@ -1,6 +1,23 @@
 import numpy as np
 
+''' this file conatains the update rules for the different optimization algorithms'''
+
 def stochastic_update(weights, biases, learning_rate, weights_change, biases_change, weight_decay):
+    '''
+    Parameters:
+        weights : weight parameters
+        biases : bias parameters
+        learning_rate : learning rate of the model
+        weights_change : change in weights (learnt from backprop)
+        biases_change : change in biases (learnt from backprop)
+        weight_decay : weight decay of the model
+    Returns:
+        weights : updated weights
+        biases : updated biases
+    Function:
+        runs the update rule for stochastic gradient descent algorithm
+    '''
+
     for layer in range(1, len(weights_change) + 1):
         weights[layer] -= (learning_rate * weights_change[layer]) + (learning_rate * weight_decay * weights[layer])
     
@@ -11,6 +28,20 @@ def stochastic_update(weights, biases, learning_rate, weights_change, biases_cha
 
 
 def momentum_update(weights, biases, history_update_weight, history_update_bias, learning_rate, weight_decay):
+    '''
+    Parameters:
+        weights : weight parameters
+        biases : bias parameters
+        learning_rate : learning rate of the model
+        history_update_weight : history of weights (learnt from backprop)
+        history_update_bias : history of biases (learnt from backprop)
+        weight_decay : weight decay of the model
+    Returns:
+        weights : updated weights
+        biases : updated biases
+    Function:
+        runs the update rule for momentum based and nesterov accelerated gradient descent algorithm
+    '''
     for layer in range(1, len(history_update_weight) + 1):
         weights[layer] -= history_update_weight[layer] + (learning_rate * weight_decay * weights[layer])
     
@@ -21,6 +52,24 @@ def momentum_update(weights, biases, history_update_weight, history_update_bias,
 
 
 def rmsprop_update(weights, biases, learning_rate, history_weights, history_biases, weights_change, biases_change, epsilon, weight_decay):
+    '''
+    Parameters:
+        weights : weight parameters
+        biases : bias parameters
+        learning_rate : learning rate of the model
+        history_weights : history of weights
+        history_biases : history of biases
+        weights_change : change in weights (learnt from backprop)
+        biases_change : change in biases (learnt from backprop)
+        epsilon : epsilon value of the model
+        weight_decay : weight decay of the model
+    Returns:
+        weights : updated weights
+        biases : updated biases
+    Function:
+        runs the update rule for rms prop gradient descent algorithm
+    '''
+
     for layer in range(1, len(history_weights) + 1):
         learning_rate_update_factor = np.sqrt(np.sum(history_weights[layer])) + epsilon
         updated_learning_rate = learning_rate / learning_rate_update_factor
@@ -35,6 +84,21 @@ def rmsprop_update(weights, biases, learning_rate, history_weights, history_bias
 
 
 def adam_update(weights, biases, learning_rate, mw_hat, mb_hat, vw_hat, vb_hat, epsilon, weight_decay):
+    '''
+    Parameters:
+        weights : weight parameters
+        biases : bias parameters
+        learning_rate : learning rate of the model
+        mw_hat, mb_hat, vw_hat, vb_hat : parameters for adam
+        epsilon : epsilon value of the model
+        weight_decay : weight decay of the model
+    Returns:
+        weights : updated weights
+        biases : updated biases
+    Function:
+        runs the update rule for adam gradient descent algorithm
+    '''
+
     for layer in range(1,len(vw_hat)+1):
         learning_rate_update_factor = np.sqrt(vw_hat[layer]) + epsilon
         updated_learning_rate = learning_rate / learning_rate_update_factor
@@ -49,6 +113,25 @@ def adam_update(weights, biases, learning_rate, mw_hat, mb_hat, vw_hat, vb_hat, 
 
 
 def nadam_update(weights, biases, learning_rate, mw_hat, mb_hat, vw_hat, vb_hat, beta1, beta2, weights_change, biases_change, epsilon, weight_decay):
+    '''
+    Parameters:
+        weights : weight parameters
+        biases : bias parameters
+        learning_rate : learning rate of the model
+        mw_hat, mb_hat, vw_hat, vb_hat : parameters for adam
+        beta1 : beta1 value for the model
+        beta2 : beta2 value for the model
+        weights_change : change in weights (learnt from backprop)
+        biases_change : change in biases (learnt from backprop)
+        epsilon : epsilon value of the model
+        weight_decay : weight decay of the model
+    Returns:
+        weights : updated weights
+        biases : updated biases
+    Function:
+        runs the update rule for adam gradient descent algorithm
+    '''
+    
     for layer in range(1, len(vw_hat) + 1):
         learning_rate_update_factor = np.sqrt(vw_hat[layer] + epsilon)
         updated_learning_rate = learning_rate/learning_rate_update_factor
