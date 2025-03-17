@@ -299,7 +299,7 @@ class NeuralNetwork:
         # run over the epochs
         for epoch in range(self.epochs):
             # run the algorithm to find the weights and biases in the epoch
-            self.weights, self.bias, vw, vb, mw, mb, mw_hat, mb_hat, vw_hat, vb_hat = OptimizationFunctions.nadam_gradient_descent(self, vw, vb, mw, mb, mw_hat, mb_hat, vw_hat, vb_hat, beta1, beta2, epsilon, batch_size, epoch)
+            self.weights, self.bias, vw, vb, mw, mb, mw_hat, mb_hat, vw_hat, vb_hat = OptimizationFunctions.nadam_gradient_descent(self, vw, vb, mw, mb, mw_hat, mb_hat, vw_hat, vb_hat, beta1, beta2, epsilon, batch_size)
 
             if bestConfigTestAccuracyRun == False:
                 # find accuracy and loss
